@@ -1,5 +1,7 @@
 def solution(m, n, puddles):
     answer = 0
+    if puddles[0]:
+        puddles = [[n, m] for [m, n] in puddles]
     dp = [[0 for j in range(m + 1)] for i in range(n + 1)]
     dp[1][1] = 1
 
@@ -8,16 +10,21 @@ def solution(m, n, puddles):
             if i == 1 and j == 1:
                 continue
             if [i, j] in puddles:
-                dp[j][i] = 0
+                dp[i][j] = 0
             else:
-                dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) % 1000000007
-    print(dp)
+                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) % 1000000007
     answer = dp[-1][-1]
     return answer
 
 
-m = 4
-n = 3
-puddles = [[2, 2]]
+# m = 4
+# n = 3
+# puddles = [[2, 2]]
+# return 4
 
-# print(solution(m, n, puddles))
+m = 4
+n = 4
+puddles = [[3, 2], [2, 4]]
+# return 7
+
+print(solution(m, n, puddles))
