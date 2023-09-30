@@ -3,10 +3,10 @@ from collections import deque
 
 def solution(n, edge):
     answer = 0
-    dic = {i: [] for i in range(1, n + 1)}
+    map = {i: [] for i in range(1, n + 1)}
     for i in edge:
-        dic[i[0]].append(i[1])
-        dic[i[1]].append(i[0])
+        map[i[0]].append(i[1])
+        map[i[1]].append(i[0])
     q = deque([])
     d = [n] * (n + 1)
     d[1] = 0
@@ -14,7 +14,7 @@ def solution(n, edge):
 
     while q:
         cur = q.popleft()
-        for i in dic[cur]:
+        for i in map[cur]:
             if d[i] == n:
                 q.append(i)
                 d[i] = d[cur] + 1
