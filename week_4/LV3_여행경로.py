@@ -11,15 +11,13 @@ def solution(tickets):
         route[st].sort(reverse=True)
 
     path = ["ICN"]
-
+    print(route)
     while path:
         cur = path[-1]
         if cur not in route or len(route[cur]) == 0:
             answer.append(path.pop())
         else:
             path.append(route[cur].pop())
-        print(path)
-        print(answer)
 
     return answer[::-1]
 
