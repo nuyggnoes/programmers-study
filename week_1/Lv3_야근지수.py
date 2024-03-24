@@ -24,3 +24,20 @@ n = 3
 #     for _ in range(n):
 #         works[works.index(max(works))] -= 1
 #     return sum(i**2 for i in works)
+
+
+def solution(n, works):
+    max_heap = [-i for i in works]
+    heapify(max_heap)
+    print(max_heap)
+    for _ in range(n):
+        if max_heap[0] < 0:
+            max_value = heappop(max_heap)
+            max_value += 1
+            heappush(max_heap, max_value)
+    return sum([i**2 for i in max_heap])
+
+
+works = [2, 1, 2]
+n = 1
+print(solution(n, works))
